@@ -1,6 +1,6 @@
 import { ActivityIndicator, Modal, View, StyleSheet } from "react-native";
 
-export default function LoadingModal({ isOpen }) {
+export default function LoadingModal({ isOpen, style }) {
   return (
     <Modal
       animationType="fade"
@@ -9,7 +9,12 @@ export default function LoadingModal({ isOpen }) {
       statusBarTranslucent
     >
       <View style={styles.centeredView}>
-        <View style={styles.modalView}>
+        <View
+          style={[
+            styles.modalView,
+            { backgroundColor: style === "light" ? "white" : "black" },
+          ]}
+        >
           <ActivityIndicator size="small" color="#ff7e01" />
         </View>
       </View>
@@ -26,7 +31,6 @@ const styles = StyleSheet.create({
   },
   modalView: {
     padding: 16,
-    backgroundColor: "white",
     borderRadius: 8,
     shadowColor: "#000",
     shadowOffset: {

@@ -1,12 +1,18 @@
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, StyleSheet, BackHandler, Platform } from "react-native";
+import {
+  SafeAreaView,
+  StyleSheet,
+  BackHandler,
+  Platform,
+  AppState,
+} from "react-native";
 import { WebView } from "react-native-webview";
 import Constants from "expo-constants";
 import { useRef, useEffect, useState } from "react";
 import LoadingModal from "./src/components/LoadingModal";
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const webViewRef = useRef(null);
 
   function onAndroidBackPress() {
@@ -20,30 +26,37 @@ export default function App() {
   }
 
   useEffect(() => {
+    const subscription = AppState.addEventListener("change", () =>
+      setIsLoading(false)
+    );
+
     if (Platform.OS !== "android") {
-      return;
+      return () => subscription.remove();
     }
 
     BackHandler.addEventListener("hardwareBackPress", onAndroidBackPress);
 
     return () => {
+      subscription.remove();
       BackHandler.removeEventListener("hardwareBackPress", onAndroidBackPress);
     };
   }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style="auto" />
+      <StatusBar style="light" backgroundColor="#000" />
+
       <WebView
         style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
         onLoadStart={() => setIsLoading(true)}
-        onLoadEnd={() => setIsLoading(false)}
+        onLoad={() => setIsLoading(false)}
         allowsBackForwardNavigationGestures
         showsHorizontalScrollIndicator={false}
-        source={{ uri: "https://afsphoto.fotop.com.br/fotos" }}
+        textZoom={100}
+        source={{ uri: "https://fotoesportesbh.46graus.com" }}
         ref={webViewRef}
       >
-        <LoadingModal isOpen={isLoading} />
+        <LoadingModal style="dark" isOpen={isLoading} />
       </WebView>
     </SafeAreaView>
   );
@@ -53,5 +66,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Platform.OS === "android" ? Constants.statusBarHeight : 0,
+    backgroundColor: "#000",
   },
 });
