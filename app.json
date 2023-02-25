@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "afsphoto_sports",
+    "name": "Foto Esportes BH",
     "slug": "afsphoto_sports",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -28,6 +28,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "122e64b1-6c29-475c-acdb-6d27d5d4fda7"
+      }
     }
   }
 }
