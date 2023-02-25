@@ -49,7 +49,7 @@ export default function App() {
       <WebView
         style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
         onLoadStart={() => setIsLoading(true)}
-        onLoad={() => setIsLoading(false)}
+        onLoadEnd={() => setIsLoading(false)}
         allowsBackForwardNavigationGestures
         showsHorizontalScrollIndicator={false}
         textZoom={100}
