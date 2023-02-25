@@ -55,9 +55,8 @@ export default function App() {
         textZoom={100}
         source={{ uri: "https://fotoesportesbh.46graus.com" }}
         ref={webViewRef}
-      >
-        <LoadingModal style="dark" isOpen={isLoading} />
-      </WebView>
+      />
+      <LoadingModal style="dark" isOpen={isLoading} />
     </SafeAreaView>
   );
 }
