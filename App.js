@@ -1,12 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import {
-  SafeAreaView,
-  StyleSheet,
-  BackHandler,
-  Platform,
-  ActivityIndicator,
-  Modal,
-} from "react-native";
+import { SafeAreaView, StyleSheet, BackHandler, Platform } from "react-native";
 import { WebView } from "react-native-webview";
 import Constants from "expo-constants";
 import { useRef, useEffect, useState } from "react";
@@ -40,6 +33,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar style="auto" />
       <WebView
         style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
         onLoadStart={() => setIsLoading(true)}
