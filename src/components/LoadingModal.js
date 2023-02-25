@@ -10,7 +10,7 @@ export default function LoadingModal({ isOpen }) {
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <ActivityIndicator size="small" color="#ff7e00" />
+          <ActivityIndicator size="small" color="#ff7e01" />
         </View>
       </View>
     </Modal>
