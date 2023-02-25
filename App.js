@@ -47,7 +47,12 @@ export default function App() {
       <StatusBar style="light" backgroundColor="#000" />
 
       <WebView
-        style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+        style={{
+          flex: 1,
+          alignItems: "center",
+          backgroundColor: "#000",
+          justifyContent: "center",
+        }}
         onLoadStart={() => setIsLoading(true)}
         onLoadEnd={() => setIsLoading(false)}
         allowsBackForwardNavigationGestures
